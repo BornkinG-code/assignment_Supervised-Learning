@@ -36,6 +36,11 @@ Production-ready lightweight restaurant ordering system for shared hosting (Host
    - Email: `admin@digitaltable.com`
    - Password: `admin123`
 
+If you already imported an older schema, reset admin password with:
+```sql
+UPDATE admins SET password_hash = '$2y$10$d5t1OkOHZIpIoou9nvtrZOahnr/hYYa3pgxUL9bO/nkbEToBp4.ku' WHERE email='admin@digitaltable.com';
+```
+
 ## Security + Performance Notes
 - Uses prepared statements (PDO) against SQL injection
 - Session-based admin auth

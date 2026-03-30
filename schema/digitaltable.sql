@@ -89,7 +89,7 @@ CREATE TABLE settings (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO admins(name,email,password_hash) VALUES ('Admin','admin@digitaltable.com', '$2y$10$2LOKFWCL5NeHnW0fU0/njO2D6GhksXP9yM6oHhJ4a2o1osQj2elGi');
+INSERT INTO admins(name,email,password_hash) VALUES ('Admin','admin@digitaltable.com', '$2y$10$d5t1OkOHZIpIoou9nvtrZOahnr/hYYa3pgxUL9bO/nkbEToBp4.ku');
 INSERT INTO categories(category_name,sort_order) VALUES ('Veg',1),('Non-Veg',2),('Drinks',3);
 INSERT INTO settings(setting_key,setting_value) VALUES ('gst_percent','5.00');
 INSERT INTO tables(table_name,is_active) VALUES ('Table 1',1),('Table 2',1),('Table 3',1);

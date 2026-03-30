@@ -5,7 +5,7 @@ $pdo = getDB();
 ensureDirs();
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $stmt = $pdo->query('SELECT * FROM tables ORDER BY id ASC');
+    $stmt = $pdo->query("SELECT id, table_name, is_active, created_at, CASE WHEN qr_path IS NULL OR qr_path='' THEN CONCAT('api/table_qr.php?table_id=', id) ELSE qr_path END AS qr_path FROM tables ORDER BY id ASC");
     jsonResponse(['success' => true, 'tables' => $stmt->fetchAll()]);
 }
 
@@ -26,15 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = (int) $pdo->lastInsertId();
     }
 
-    $publicUrl = (BASE_URL ?: '') . '/public/index.php?table_id=' . $id;
-    $qrUrl = 'https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' . urlencode($publicUrl);
-    $qrImage = @file_get_contents($qrUrl);
+    $publicUrl = rtrim(BASE_URL ?: '', '/') . '/public/index.php?table_id=' . $id;
+    $remoteQrUrl = 'https://quickchart.io/qr?size=300&text=' . urlencode($publicUrl);
     $qrPath = 'uploads/qrcodes/table_' . $id . '.png';
-    if ($qrImage !== false) {
-        file_put_contents(__DIR__ . '/../' . $qrPath, $qrImage);
-        $upd = $pdo->prepare('UPDATE tables SET qr_path=? WHERE id=?');
-        $upd->execute([$qrPath, $id]);
+    $saved = @file_put_contents(__DIR__ . '/../' . $qrPath, @file_get_contents($remoteQrUrl));
+    if ($saved === false) {
+        // fallback to dynamic QR endpoint so admin always sees a usable QR link
+        $qrPath = 'api/table_qr.php?table_id=' . $id;
     }
+
+    $upd = $pdo->prepare('UPDATE tables SET qr_path=? WHERE id=?');
+    $upd->execute([$qrPath, $id]);
 
     jsonResponse(['success' => true]);
 }

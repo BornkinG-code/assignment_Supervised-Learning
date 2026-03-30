@@ -8,7 +8,7 @@ Production-ready lightweight restaurant ordering system for shared hosting (Host
 - Admin login with dashboard metrics and live updates every 3s
 - Order actions (accept/reject), sound alert, search/filter
 - Menu/category/table CRUD, availability toggle, image upload
-- QR generation/download for tables
+- QR generation/download for tables (cached PNG with dynamic fallback endpoint)
 - Analytics with Chart.js (daily/monthly/top items)
 - CSV export
 - Invoice generation and month-wise storage

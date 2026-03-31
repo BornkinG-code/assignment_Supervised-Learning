@@ -6,7 +6,6 @@ const els = {
   landing: document.getElementById('landingScreen'),
   menu: document.getElementById('menuScreen'),
   browseBtn: document.getElementById('browseBtn'),
-  browseBtnSticky: document.getElementById('browseBtnSticky'),
   menuWrap: document.getElementById('menuWrap'),
   categoryTabs: document.getElementById('categoryTabs'),
   cartSheet: document.getElementById('cartSheet'),
@@ -220,7 +219,6 @@ async function placeOrder() {
 }
 
 els.browseBtn?.addEventListener('click', showMenuExperience);
-els.browseBtnSticky?.addEventListener('click', showMenuExperience);
 els.cartOpenBtn?.addEventListener('click', () => toggleCart(true));
 els.cartCloseBtn?.addEventListener('click', () => toggleCart(false));
 els.sheetBackdrop?.addEventListener('click', () => toggleCart(false));

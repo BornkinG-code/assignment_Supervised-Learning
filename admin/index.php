@@ -103,8 +103,8 @@
     </main>
   </div>
 
-  <dialog id='orderItemsModal' class='modal-dialog-box' aria-labelledby='orderItemsTitle'>
-    <div class='panel'>
+  <div id='orderItemsModal' class='modal' aria-hidden='true'>
+    <div class='modal-dialog panel' role='dialog' aria-modal='true' aria-labelledby='orderItemsTitle'>
       <div class='panel-head'>
         <h2 id='orderItemsTitle'>Order Items</h2>
         <button class='icon-btn' type='button' onclick='closeOrderItemsModal()' aria-label='Close'>✕</button>
@@ -115,7 +115,7 @@
         <button class='btn alt' type='button' onclick='closeOrderItemsModal()'>Close</button>
       </div>
     </div>
-  </dialog>
+  </div>
 
   <script src='../assets/js/admin.js'></script>
   <script>

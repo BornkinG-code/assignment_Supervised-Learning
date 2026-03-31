@@ -134,21 +134,15 @@ function showOrderItemsModal(orderId) {
     ? items.map(item => `<li>${item}</li>`).join('')
     : "<li class='muted'>No items found for this order.</li>";
 
-  if (typeof modal.showModal === 'function') {
-    modal.showModal();
-  } else {
-    modal.setAttribute('open', 'open');
-  }
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
 }
 
 function closeOrderItemsModal() {
   const modal = document.getElementById('orderItemsModal');
   if (!modal) return;
-  if (typeof modal.close === 'function') {
-    modal.close();
-  } else {
-    modal.removeAttribute('open');
-  }
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
 }
 
 async function loadOrders() {
@@ -213,13 +207,5 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeOrderItemsModal();
 });
 document.addEventListener('click', (event) => {
-  if (event.target?.id === 'orderItemsModal') {
-    const rect = event.target.getBoundingClientRect();
-    const isInDialog =
-      rect.top <= event.clientY &&
-      event.clientY <= rect.top + rect.height &&
-      rect.left <= event.clientX &&
-      event.clientX <= rect.left + rect.width;
-    if (!isInDialog) closeOrderItemsModal();
-  }
+  if (event.target?.id === 'orderItemsModal') closeOrderItemsModal();
 });

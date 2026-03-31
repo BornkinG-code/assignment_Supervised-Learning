@@ -103,6 +103,20 @@
     </main>
   </div>
 
+  <dialog id='orderItemsModal' class='modal-dialog-box' aria-labelledby='orderItemsTitle'>
+    <div class='panel'>
+      <div class='panel-head'>
+        <h2 id='orderItemsTitle'>Order Items</h2>
+        <button class='icon-btn' type='button' onclick='closeOrderItemsModal()' aria-label='Close'>✕</button>
+      </div>
+      <p id='orderItemsMeta' class='muted'></p>
+      <ul id='orderItemsList' class='order-items-list'></ul>
+      <div class='row'>
+        <button class='btn alt' type='button' onclick='closeOrderItemsModal()'>Close</button>
+      </div>
+    </div>
+  </dialog>
+
   <script src='../assets/js/admin.js'></script>
   <script>
     let dailyChart, topChart;

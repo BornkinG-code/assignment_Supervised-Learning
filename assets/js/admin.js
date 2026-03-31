@@ -1,4 +1,5 @@
 let lastOrderCount = 0;
+let ordersById = {};
 const ding = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
 
 function toggleTheme() {
@@ -112,12 +113,51 @@ function orderStatusChip(status) {
   return "<span class='status-chip warn'>Pending</span>";
 }
 
+function getOrderItems(itemsText) {
+  return String(itemsText || '')
+    .split(',')
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function showOrderItemsModal(orderId) {
+  const modal = document.getElementById('orderItemsModal');
+  const itemsList = document.getElementById('orderItemsList');
+  const meta = document.getElementById('orderItemsMeta');
+  if (!modal || !itemsList || !meta) return;
+  const order = ordersById[orderId];
+  if (!order) return;
+
+  const items = getOrderItems(order.items);
+  meta.textContent = `${order.order_code} • ${order.customer_name}`;
+  itemsList.innerHTML = items.length
+    ? items.map(item => `<li>${item}</li>`).join('')
+    : "<li class='muted'>No items found for this order.</li>";
+
+  if (typeof modal.showModal === 'function') {
+    modal.showModal();
+  } else {
+    modal.setAttribute('open', 'open');
+  }
+}
+
+function closeOrderItemsModal() {
+  const modal = document.getElementById('orderItemsModal');
+  if (!modal) return;
+  if (typeof modal.close === 'function') {
+    modal.close();
+  } else {
+    modal.removeAttribute('open');
+  }
+}
+
 async function loadOrders() {
   const search = document.getElementById('search')?.value || '';
   const status = document.getElementById('statusFilter')?.value || '';
   const res = await fetch(`../api/admin_orders.php?search=${encodeURIComponent(search)}&status=${status}`);
   const d = await res.json();
   if (!d.success) return;
+  ordersById = Object.fromEntries((d.orders || []).map(order => [order.id, order]));
 
   const ordersList = document.getElementById('ordersList');
   if (ordersList) {
@@ -137,7 +177,7 @@ async function loadOrders() {
           <div>${orderStatusChip(o.status)}<div class='order-sub'>${o.order_date}</div></div>
           <div class='actions'>
             ${o.status === 'pending' ? `<button class='btn' onclick='changeStatus(${o.id},"accepted")'>Accept</button><button class='btn bad' onclick='changeStatus(${o.id},"rejected")'>Reject</button>` : ''}
-            <button class='btn alt'>View</button>
+            <button class='btn alt' onclick='showOrderItemsModal(${o.id})'>View</button>
           </div>
         </article>
       `).join('');
@@ -169,3 +209,17 @@ setInterval(() => {
 }, 4000);
 
 initSidebar();
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeOrderItemsModal();
+});
+document.addEventListener('click', (event) => {
+  if (event.target?.id === 'orderItemsModal') {
+    const rect = event.target.getBoundingClientRect();
+    const isInDialog =
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width;
+    if (!isInDialog) closeOrderItemsModal();
+  }
+});

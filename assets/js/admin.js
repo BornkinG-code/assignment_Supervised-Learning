@@ -13,7 +13,7 @@ async function loadOrders(){
   const search=document.getElementById('search')?.value||'';const status=document.getElementById('statusFilter')?.value||'';
   const res=await fetch(`../api/admin_orders.php?search=${encodeURIComponent(search)}&status=${status}`);const d=await res.json(); if(!d.success)return;
   const tbody=document.getElementById('ordersBody'); if(!tbody) return;
-  tbody.innerHTML=d.orders.map(o=>`<tr><td>${o.order_code}</td><td>${o.customer_name}<br>${o.customer_mobile}</td><td>${o.table_name}</td><td>${o.items||''}</td><td>₹${o.total_amount}</td><td class='status-${o.status}'>${o.status}</td><td>${o.order_date}</td><td>${o.status==='pending'?`<button class='btn ok' onclick='changeStatus(${o.id},"accepted")'>Accept</button><button class='btn bad' onclick='changeStatus(${o.id},"rejected")'>Reject</button>`:''}</td></tr>`).join('');
+  tbody.innerHTML=d.orders.map(o=>`<tr><td data-label='Order'>${o.order_code}</td><td data-label='Customer'>${o.customer_name}<br>${o.customer_mobile}</td><td data-label='Table'>${o.table_name}</td><td data-label='Items'>${o.items||''}</td><td data-label='Total'>₹${o.total_amount}</td><td data-label='Status' class='status-${o.status}'>${o.status}</td><td data-label='Time'>${o.order_date}</td><td data-label='Actions'>${o.status==='pending'?`<button class='btn ok' onclick='changeStatus(${o.id},"accepted")'>Accept</button><button class='btn bad' onclick='changeStatus(${o.id},"rejected")'>Reject</button>`:''}</td></tr>`).join('');
   if(d.orders.length>lastOrderCount && lastOrderCount!==0){ding.play().catch(()=>{})}
   lastOrderCount=d.orders.length;
 }

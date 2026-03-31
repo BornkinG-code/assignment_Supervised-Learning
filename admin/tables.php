@@ -12,10 +12,10 @@ async function load(){
   const d=await r.json();
   tableCache=d.tables||[];
   rows.innerHTML=tableCache.map(t=>`<tr>
-    <td>${t.table_name}</td>
-    <td>${t.qr_path?`<a href='../${t.qr_path}' target='_blank' download>Download QR</a>`:'<button class="btn alt" onclick="regen('+t.id+')">Generate QR</button>'}</td>
-    <td>${t.is_active==1?'Yes':'No'}</td>
-    <td>
+    <td data-label='Name'>${t.table_name}</td>
+    <td data-label='QR'>${t.qr_path?`<a href='../${t.qr_path}' target='_blank' download>Download QR</a>`:'<button class="btn alt" onclick="regen('+t.id+')">Generate QR</button>'}</td>
+    <td data-label='Active'>${t.is_active==1?'Yes':'No'}</td>
+    <td data-label='Actions'>
       <button class='btn alt' onclick='edit(${t.id})'>Edit</button>
       <button class='btn alt' onclick='regen(${t.id})'>Regenerate QR</button>
       <button class='btn bad' onclick='delTable(${t.id})'>Delete</button>

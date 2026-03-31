@@ -17,7 +17,7 @@
 </div></div></div>
 <script>
 async function loadCategories(){const r=await fetch('../api/admin_categories.php');const d=await r.json();categorySelect.innerHTML=d.categories.map(c=>`<option value='${c.id}'>${c.category_name}</option>`).join('')}
-async function loadMenu(){const r=await fetch('../api/admin_menu.php');const d=await r.json();menuRows.innerHTML=d.items.map(i=>`<tr><td>${i.item_name}</td><td>${i.category_name}</td><td>${i.price}</td><td>${i.is_available==1?'Yes':'No'}</td><td><button class='btn alt' onclick='edit(${JSON.stringify(i)})'>Edit</button><button class='btn bad' onclick='del(${i.id})'>Delete</button></td></tr>`).join('')}
+async function loadMenu(){const r=await fetch('../api/admin_menu.php');const d=await r.json();menuRows.innerHTML=d.items.map(i=>`<tr><td data-label='Item'>${i.item_name}</td><td data-label='Category'>${i.category_name}</td><td data-label='Price'>${i.price}</td><td data-label='Available'>${i.is_available==1?'Yes':'No'}</td><td data-label='Action'><button class='btn alt' onclick='edit(${JSON.stringify(i)})'>Edit</button><button class='btn bad' onclick='del(${i.id})'>Delete</button></td></tr>`).join('')}
 function edit(i){for(const k in i){const el=document.querySelector(`[name=${k}]`); if(el)el.value=i[k]} id.value=i.id; existing_image.value=i.image_path||''}
 async function del(id){await fetch('../api/admin_menu.php',{method:'DELETE',body:`id=${id}`});loadMenu()}
 menuForm.onsubmit=async e=>{e.preventDefault();const fd=new FormData(menuForm);await fetch('../api/admin_menu.php',{method:'POST',body:fd});menuForm.reset();loadMenu()}

@@ -27,7 +27,7 @@ $tableId = (int) ($_GET['table_id'] ?? 0);
 
   <div id='menuWrap'></div>
 
-  <section class='cart'>
+  <section class='cart' id='cartSection'>
     <div class='card'>
       <div class='card-body'>
         <h3>Your Cart</h3>
@@ -43,6 +43,13 @@ $tableId = (int) ($_GET['table_id'] ?? 0);
     </div>
   </section>
 </div>
+
+<button id='floatingCartBtn' class='floating-cart' onclick='scrollToCart()' aria-label='Open cart'>
+  <span>🛒 Cart</span>
+  <b id='floatingCartCount'>0</b>
+  <small>₹<span id='floatingCartTotal'>0.00</span></small>
+</button>
+
 <script src='../assets/js/customer.js'></script>
 </body>
 </html>

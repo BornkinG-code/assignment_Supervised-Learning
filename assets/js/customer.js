@@ -87,9 +87,14 @@ function minusFromCart(id) {
   renderCart();
 }
 
+function scrollToCart() {
+  document.getElementById('cartSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function renderCart() {
   const el = document.getElementById('cartItems');
   let subtotal = 0;
+  let totalQty = 0;
   const lines = [];
 
   Object.values(state.menu).flat().forEach((i) => {
@@ -97,7 +102,21 @@ function renderCart() {
     const qty = state.cart[i.id];
     const line = qty * parseFloat(i.price);
     subtotal += line;
-    lines.push(`<div class='cart-line'><span>${i.item_name} x${qty}</span><span>₹${line.toFixed(2)}</span></div>`);
+    totalQty += qty;
+    lines.push(`<div class='cart-line'>
+      <div>
+        <strong>${i.item_name}</strong><br>
+        <small>₹${Number(i.price).toFixed(2)} each</small>
+      </div>
+      <div class='cart-actions'>
+        <div class='qty'>
+          <button onclick='minusFromCart(${i.id})'>−</button>
+          <span>${qty}</span>
+          <button onclick='addToCart(${i.id})'>+</button>
+        </div>
+        <span>₹${line.toFixed(2)}</span>
+      </div>
+    </div>`);
   });
 
   const gst = Number(document.getElementById('gstPercent').value || 5);
@@ -108,6 +127,11 @@ function renderCart() {
   document.getElementById('subtotal').textContent = subtotal.toFixed(2);
   document.getElementById('gstAmt').textContent = gstAmt.toFixed(2);
   document.getElementById('total').textContent = total.toFixed(2);
+
+  document.getElementById('floatingCartCount').textContent = totalQty;
+  document.getElementById('floatingCartTotal').textContent = total.toFixed(2);
+  const floatingBtn = document.getElementById('floatingCartBtn');
+  floatingBtn.style.display = totalQty ? 'flex' : 'none';
 }
 
 async function placeOrder() {

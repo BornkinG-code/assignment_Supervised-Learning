@@ -176,7 +176,7 @@ body.dark .order-item { background: linear-gradient(180deg, rgba(30,41,59,.8), r
 .customer-app { max-width: 980px; margin: 0 auto; padding: 10px 14px 120px; }
 .hidden { display: none !important; }
 
-.landing-screen { min-height: 100vh; display: grid; place-items: center; padding: 18px; }
+.landing-screen { min-height: 100vh; display: grid; place-items: center; padding: 14px; }
 .landing-hero {
   width: min(980px, 100%);
   min-height: min(74vh, 640px);

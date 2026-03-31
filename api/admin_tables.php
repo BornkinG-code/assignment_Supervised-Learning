@@ -29,8 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $publicUrl = rtrim(BASE_URL ?: '', '/') . '/public/index.php?table_id=' . $id;
     $remoteQrUrl = 'https://quickchart.io/qr?size=300&text=' . urlencode($publicUrl);
     $qrPath = 'uploads/qrcodes/table_' . $id . '.png';
-    $saved = @file_put_contents(__DIR__ . '/../' . $qrPath, @file_get_contents($remoteQrUrl));
-    if ($saved === false) {
+    $qrBinary = @file_get_contents($remoteQrUrl);
+    $saved = false;
+    if ($qrBinary !== false) {
+        $saved = @file_put_contents(__DIR__ . '/../' . $qrPath, $qrBinary);
+    }
+    if ($saved === false || $saved === 0) {
+        if (is_file(__DIR__ . '/../' . $qrPath) && filesize(__DIR__ . '/../' . $qrPath) === 0) {
+            @unlink(__DIR__ . '/../' . $qrPath);
+        }
         // fallback to dynamic QR endpoint so admin always sees a usable QR link
         $qrPath = 'api/table_qr.php?table_id=' . $id;
     }

@@ -342,17 +342,19 @@ body.dark .order-item { background: linear-gradient(180deg, rgba(30,41,59,.8), r
 .sidebar-collapsed .nav-label,
 .sidebar-collapsed .mini-badge,
 .sidebar-collapsed .profile-text,
-.sidebar-collapsed .sidebar-footer .row,
-.sidebar-collapsed .sidebar-footer > .btn.bad { display: none; }
+.sidebar-collapsed .sidebar-footer > .btn.bad,
+.sidebar-collapsed .sidebar-footer .row .btn:not(#sidebarCollapseBtn) { display: none; }
 .sidebar-collapsed .sidebar-footer { gap: 0; }
 .sidebar-collapsed .nav-item { justify-content: center; padding: 12px 10px; }
 .sidebar-collapsed .sidebar-nav { gap: 12px; }
+.sidebar-collapsed #sidebarCollapseBtn { width: 44px; min-width: 44px; padding: 10px 0; margin: 0 auto; }
+
 
 #sidebarOpenMobile { display: none; }
 
 @media (max-width: 1100px) {
   #sidebarOpenMobile { display: grid; }
-  .fixed-sidebar { transform: translateX(-120%); left: 10px; top: 10px; bottom: 10px; width: min(260px, 82vw); }
+  .fixed-sidebar { display: flex; transform: translateX(-120%); left: 10px; top: 10px; bottom: 10px; width: min(260px, 82vw); }
   .fixed-sidebar.mobile-open { transform: translateX(0); }
   .sidebar-close { display: grid; }
   .main-with-sidebar { margin-left: 0; }

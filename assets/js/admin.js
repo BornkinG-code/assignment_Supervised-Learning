@@ -23,9 +23,17 @@ function initSidebar() {
   const collapsed = localStorage.getItem('dt_sidebar') === 'collapsed';
   if (collapsed) body.classList.add('sidebar-collapsed');
 
+  function syncCollapseButton() {
+    if (!collapseBtn) return;
+    collapseBtn.textContent = body.classList.contains('sidebar-collapsed') ? 'Expand' : 'Collapse';
+    collapseBtn.title = body.classList.contains('sidebar-collapsed') ? 'Expand sidebar' : 'Collapse sidebar';
+  }
+  syncCollapseButton();
+
   collapseBtn?.addEventListener('click', () => {
     body.classList.toggle('sidebar-collapsed');
     localStorage.setItem('dt_sidebar', body.classList.contains('sidebar-collapsed') ? 'collapsed' : 'expanded');
+    syncCollapseButton();
   });
 
   function toggleMobile(open) {

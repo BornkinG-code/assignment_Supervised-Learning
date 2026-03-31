@@ -9,21 +9,54 @@ $tableId = (int) ($_GET['table_id'] ?? 0);
   <title>DigitalTable — Order</title>
   <link rel='preconnect' href='https://fonts.googleapis.com'>
   <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap' rel='stylesheet'>
   <link rel='stylesheet' href='../assets/css/style.css'>
 </head>
 <body class='customer-body'>
   <div id='landingScreen' class='landing-screen'>
-    <div class='landing-hero fade-up'>
-      <p class='eyebrow'>Welcome to</p>
-      <h1 id='restaurantName'>DigitalTable Restaurant</h1>
-      <p class='muted'>Scan. Tap. Enjoy. A premium QR ordering flow designed for speed.</p>
-      <div class='row'>
-        <span class='pill emerald'>Table <b id='tableName'>#<?= $tableId ?></b></span>
-        <span class='status-chip live'>Live Menu</span>
+    <section class='landing-hero glass fade-up'>
+      <div class='landing-overlay'></div>
+      <div class='landing-content'>
+        <p class='eyebrow'>Welcome to</p>
+        <h1 id='restaurantName'>DigitalTable Restaurant</h1>
+        <h2 class='landing-tagline'>Scan. Order. Enjoy.</h2>
+        <p class='landing-desc'>Order your favorite food directly from your table.</p>
+        <div class='row'>
+          <span class='pill emerald'>Table <b id='tableName'>#<?= $tableId ?></b></span>
+          <span class='status-chip live'>Live Menu</span>
+        </div>
+        <button class='btn cta landing-cta' id='browseBtn'>Browse Menu</button>
       </div>
-      <button class='btn cta' id='browseBtn'>Browse Menu</button>
-    </div>
+    </section>
+
+    <section class='landing-highlights fade-up'>
+      <article class='feature-card'>
+        <div class='feature-icon'>⚡</div>
+        <h3>Fast Ordering</h3>
+        <p>Browse and place orders in a few taps without waiting for staff.</p>
+      </article>
+      <article class='feature-card'>
+        <div class='feature-icon'>🍽️</div>
+        <h3>Freshly Prepared</h3>
+        <p>Every order goes directly to the kitchen for quick, fresh service.</p>
+      </article>
+      <article class='feature-card'>
+        <div class='feature-icon'>💳</div>
+        <h3>Easy Billing</h3>
+        <p>Track your items clearly and enjoy smooth checkout at your table.</p>
+      </article>
+    </section>
+
+    <section class='how-it-works fade-up'>
+      <h3>How it works</h3>
+      <div class='steps-grid'>
+        <article class='step-card'><span>1</span><div><b>Scan QR</b><p>Use your phone camera to open the digital menu.</p></div></article>
+        <article class='step-card'><span>2</span><div><b>Browse Menu</b><p>Explore categories and pick your favorite dishes.</p></div></article>
+        <article class='step-card'><span>3</span><div><b>Place Order</b><p>Confirm your cart and send the order instantly.</p></div></article>
+      </div>
+    </section>
+
+    <button class='btn cta landing-cta-sticky' id='browseBtnSticky'>Browse Menu</button>
   </div>
 
   <main id='menuScreen' class='customer-app hidden'>

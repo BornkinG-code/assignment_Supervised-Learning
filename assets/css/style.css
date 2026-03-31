@@ -253,3 +253,83 @@ select {
     grid-template-columns: 1fr;
   }
 }
+
+/* Admin UI */
+.admin-shell {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-topbar {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: end;
+  margin-bottom: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.stat-value {
+  margin-top: 6px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.btn-ghost {
+  padding: 9px 12px;
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+.btn-ghost.active {
+  outline: 2px solid #ffd6dc;
+  background: #fff2f4;
+}
+
+.btn-danger {
+  padding: 9px 12px;
+  background: #ef4444;
+  color: #fff;
+}
+
+.admin-charts {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}

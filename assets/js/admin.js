@@ -20,13 +20,6 @@ function initSidebar() {
   const closeMobileBtn = document.getElementById('sidebarCloseMobile');
   if (!sidebar) return;
 
-
-  const currentPage = document.body.dataset.page || '';
-  if (currentPage) {
-    document.querySelectorAll('.admin-sidebar [data-nav]').forEach((item) => {
-      item.classList.toggle('is-active', item.dataset.nav === currentPage);
-    });
-  }
   const collapsed = localStorage.getItem('dt_sidebar') === 'collapsed';
   if (collapsed) body.classList.add('sidebar-collapsed');
 

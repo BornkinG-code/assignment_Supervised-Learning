@@ -374,3 +374,53 @@ select {
   font-size: 0.78rem;
   opacity: 0.95;
 }
+
+/* Professional admin overrides */
+body.admin-page {
+  background: radial-gradient(circle at top right, #ffeef1 0%, #f6f7fb 45%, #f3f4f8 100%);
+}
+
+.admin-page .card {
+  border: 1px solid #ececf2;
+  box-shadow: 0 12px 32px rgba(20, 28, 52, 0.08);
+}
+
+.admin-topbar.card {
+  background: linear-gradient(135deg, #ffffff 0%, #fff7f8 100%);
+}
+
+.admin-nav.card {
+  padding: 10px;
+}
+
+.admin-nav .btn {
+  border-radius: 999px;
+}
+
+.admin-page .table th {
+  background: #fff5f6;
+  color: #af2e3a;
+  font-weight: 700;
+}
+
+.admin-page .table tr:hover td {
+  background: #fffafb;
+}
+
+.admin-page .input {
+  background: #fff;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --surface: #111827;
+  --surface-soft: #1f2937;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #374151;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.dark.admin-page {
+  background: radial-gradient(circle at top right, #1f2937 0%, #0f172a 60%, #030712 100%);
+}

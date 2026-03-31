@@ -158,3 +158,117 @@ body.dark .order-item { background: linear-gradient(180deg, rgba(30,41,59,.8), r
   .actions { justify-content: flex-start; }
   .input, select { min-width: 140px; width: 100%; }
 }
+
+/* Customer Panel Premium UI */
+.customer-body { background: linear-gradient(180deg, #f8fafc, #eef2f8); min-height: 100vh; }
+.customer-app { max-width: 980px; margin: 0 auto; padding: 10px 14px 120px; }
+.hidden { display: none !important; }
+
+.landing-screen { min-height: 100vh; display: grid; place-items: center; padding: 18px; }
+.landing-hero {
+  width: min(720px, 100%); padding: 26px; border-radius: 28px; color: #fff;
+  background: linear-gradient(145deg, #0f766e, #065f46 65%, #022c22);
+  box-shadow: 0 30px 60px rgba(6, 95, 70, 0.25);
+}
+.landing-hero h1 { margin: 4px 0 10px; font-size: clamp(1.4rem, 5.5vw, 2.3rem); }
+.cta { font-size: 1rem; padding: 12px 16px; border-radius: 14px; }
+
+.menu-top {
+  position: sticky; top: 8px; z-index: 12; margin-bottom: 10px;
+  padding: 12px; border-radius: 18px;
+}
+.menu-top h2 { margin: 0; font-size: 1.05rem; }
+.full-search { width: 100%; margin-top: 8px; }
+
+.category-tabs {
+  position: sticky; top: 94px; z-index: 11;
+  display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 10px;
+}
+.cat-tab {
+  border: 1px solid var(--line); background: #fff; color: var(--text);
+  border-radius: 999px; padding: 10px 14px; font-weight: 600; white-space: nowrap;
+}
+.cat-tab.active { background: rgba(16, 185, 129, .14); border-color: rgba(16,185,129,.4); }
+
+.menu-category { margin: 14px 0 18px; }
+.section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.item-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+
+.food-card { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+.food-card img { width: 100%; height: 146px; object-fit: cover; }
+.food-body { padding: 12px; }
+.food-body h4 { margin: 0; font-size: 1rem; }
+.food-body p { margin: 7px 0; color: var(--muted); font-size: .84rem; }
+.spread { justify-content: space-between; }
+.price { font-size: 1rem; font-weight: 800; }
+.food-dot { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
+.food-dot.veg { background: #16a34a; }
+.food-dot.nonveg { background: #dc2626; }
+
+.stepper {
+  display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line);
+  border-radius: 999px; padding: 6px 8px; background: #fff;
+}
+.stepper button {
+  width: 28px; height: 28px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(16,185,129,.14); color: #047857; font-size: 1.1rem;
+}
+.stepper.compact button { width: 24px; height: 24px; }
+
+.sticky-cart {
+  position: fixed; left: 12px; right: 12px; bottom: 14px; z-index: 25;
+  border: 0; border-radius: 16px; padding: 14px;
+  background: linear-gradient(145deg, #059669, #047857);
+  color: #fff; display: flex; justify-content: space-between; font-size: .96rem; box-shadow: 0 18px 34px rgba(5,150,105,.34);
+}
+
+.cart-sheet {
+  position: fixed; left: 0; right: 0; bottom: -90vh; z-index: 35;
+  background: #fff; border-radius: 26px 26px 0 0; padding: 10px 14px 20px;
+  transition: .26s ease; max-height: 85vh; overflow-y: auto;
+}
+.cart-sheet.open { bottom: 0; }
+.sheet-backdrop {
+  position: fixed; inset: 0; z-index: 34; opacity: 0; pointer-events: none;
+  background: rgba(2,6,23,.35); transition: .2s ease;
+}
+.sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+.cart-handle { width: 56px; height: 5px; border-radius: 999px; background: #cbd5e1; margin: 6px auto 14px; }
+.cart-items { display: grid; gap: 8px; margin-bottom: 12px; }
+.cart-line { display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--line); border-radius: 14px; padding: 8px 10px; }
+.bill { border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); padding: 10px 0; }
+.bill p { display: flex; justify-content: space-between; margin: 8px 0; }
+.bill-total { font-size: 1.08rem; }
+.checkout-form { display: grid; gap: 9px; margin-top: 12px; }
+.form-error { color: #dc2626; font-size: .82rem; margin: 0; }
+.empty-state { border: 1px dashed var(--line); border-radius: 14px; text-align: center; padding: 18px; }
+
+.badge {
+  min-width: 20px; height: 20px; border-radius: 999px; font-size: .74rem;
+  background: #ef4444; color: #fff; display: inline-grid; place-items: center;
+}
+.cart-btn { gap: 6px; display: inline-flex; align-items: center; justify-content: center; }
+
+.status-wrap { min-height: 100vh; display: grid; place-items: center; padding: 18px; }
+.status-card { width: min(550px, 100%); background: #fff; border-radius: 26px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 24px; text-align: center; }
+.status-line { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 8px; }
+.dot { width: 12px; height: 12px; border-radius: 999px; display: inline-block; }
+.dot.pending { background: #f59e0b; animation: pulse 1.5s infinite; }
+.dot.accepted { background: #16a34a; }
+.dot.rejected { background: #dc2626; }
+.progress { width: 100%; height: 8px; border-radius: 999px; background: #e2e8f0; overflow: hidden; margin: 16px 0; }
+.progress i { display: block; height: 100%; width: 45%; background: #f59e0b; animation: shimmer 1.4s linear infinite; }
+.progress i.accepted { width: 100%; background: #16a34a; animation: none; }
+.progress i.rejected { width: 100%; background: #dc2626; animation: none; }
+.success-burst {
+  width: 58px; height: 58px; border-radius: 50%; background: rgba(22,163,74,.18); color: #166534;
+  display: grid; place-items: center; margin: 0 auto 10px; font-size: 1.4rem; font-weight: 800; animation: pop .42s ease;
+}
+
+@keyframes pop { from { transform: scale(.6); opacity: .2; } to { transform: scale(1); opacity: 1; } }
+
+@media (max-width: 760px) {
+  .customer-app { padding: 8px 10px 120px; }
+  .item-grid { grid-template-columns: 1fr; }
+  .category-tabs { top: 88px; }
+}

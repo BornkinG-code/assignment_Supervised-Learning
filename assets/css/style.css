@@ -87,6 +87,18 @@ body.dark .order-item { background: linear-gradient(180deg, rgba(30,41,59,.8), r
 .order-sub { color: var(--muted); font-size: .82rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
 
+.modal {
+  position: fixed; inset: 0; z-index: 90;
+  display: none; align-items: center; justify-content: center;
+  padding: 16px; background: rgba(2, 6, 23, 0.55);
+}
+.modal.open { display: flex; }
+.modal-dialog { width: min(520px, 100%); border-radius: 20px; }
+.order-items-list {
+  margin: 0 0 14px; padding-left: 20px;
+  display: grid; gap: 8px;
+}
+
 .dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
 .mini-grid { display: grid; gap: 8px; }
 .menu-card, .table-card { border: 1px solid var(--line); border-radius: 14px; padding: 10px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }

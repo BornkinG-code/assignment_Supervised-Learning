@@ -10,6 +10,34 @@ function toggleTheme() {
   if (localStorage.getItem('dt_theme') === 'dark') document.body.classList.add('dark');
 })();
 
+
+function initSidebar() {
+  const body = document.body;
+  const sidebar = document.getElementById('adminSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const collapseBtn = document.getElementById('sidebarCollapseBtn');
+  const openMobileBtn = document.getElementById('sidebarOpenMobile');
+  const closeMobileBtn = document.getElementById('sidebarCloseMobile');
+  if (!sidebar) return;
+
+  const collapsed = localStorage.getItem('dt_sidebar') === 'collapsed';
+  if (collapsed) body.classList.add('sidebar-collapsed');
+
+  collapseBtn?.addEventListener('click', () => {
+    body.classList.toggle('sidebar-collapsed');
+    localStorage.setItem('dt_sidebar', body.classList.contains('sidebar-collapsed') ? 'collapsed' : 'expanded');
+  });
+
+  function toggleMobile(open) {
+    sidebar.classList.toggle('mobile-open', open);
+    overlay?.classList.toggle('open', open);
+  }
+
+  openMobileBtn?.addEventListener('click', () => toggleMobile(true));
+  closeMobileBtn?.addEventListener('click', () => toggleMobile(false));
+  overlay?.addEventListener('click', () => toggleMobile(false));
+}
+
 function animateNumber(el, target, prefix = '', suffix = '') {
   const duration = 500;
   const start = Number(el.dataset.value || 0);
@@ -131,3 +159,5 @@ setInterval(() => {
   dashboardStats();
   loadOrders();
 }, 4000);
+
+initSidebar();

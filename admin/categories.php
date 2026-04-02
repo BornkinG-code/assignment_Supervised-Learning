@@ -5,37 +5,39 @@
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <title>Category Management</title>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' rel='stylesheet'>
   <link rel='stylesheet' href='../assets/css/style.css'>
 </head>
-<body>
-  <div class='container'>
-    <div class='header'>
-      <div class='brand'>Category Management</div>
-      <a class='btn alt' href='index.php'>Back</a>
-    </div>
-
-    <div class='card'>
-      <div class='card-body'>
-        <h3>Create / Update Category</h3>
-        <form id='categoryForm' class='row'>
-          <input type='hidden' id='cat_id' name='id'>
-          <input class='input' id='cat_name' name='category_name' placeholder='Category name (e.g. Starters)' required>
-          <input class='input' id='cat_sort' name='sort_order' type='number' placeholder='Sort order' value='0'>
-          <button class='btn'>Save Category</button>
-          <button type='button' class='btn alt' onclick='resetCategoryForm()'>Clear</button>
-        </form>
+<body class='admin-portal'>
+  <div class='admin-screen'>
+    <header class='admin-topbar glass'>
+      <div>
+        <p class='eyebrow'>Catalog</p>
+        <h1>Category Management</h1>
       </div>
-    </div>
+      <a class='btn alt' href='index.php'>Dashboard</a>
+    </header>
 
-    <div class='card' style='margin-top:14px'>
-      <div class='card-body'>
-        <h3>All Categories</h3>
-        <table class='table'>
-          <thead><tr><th>Name</th><th>Sort</th><th>Action</th></tr></thead>
-          <tbody id='categoryRows'></tbody>
-        </table>
-      </div>
-    </div>
+    <section class='panel'>
+      <div class='panel-head'><h2>Create / Update Category</h2></div>
+      <form id='categoryForm' class='row'>
+        <input type='hidden' id='cat_id' name='id'>
+        <input class='input' id='cat_name' name='category_name' placeholder='Category name (e.g. Starters)' required>
+        <input class='input' id='cat_sort' name='sort_order' type='number' placeholder='Sort order' value='0'>
+        <button class='btn'>Save Category</button>
+        <button type='button' class='btn alt' onclick='resetCategoryForm()'>Clear</button>
+      </form>
+    </section>
+
+    <section class='panel'>
+      <div class='panel-head'><h2>All Categories</h2></div>
+      <table class='table'>
+        <thead><tr><th>Name</th><th>Sort</th><th>Action</th></tr></thead>
+        <tbody id='categoryRows'></tbody>
+      </table>
+    </section>
   </div>
 
   <script>
